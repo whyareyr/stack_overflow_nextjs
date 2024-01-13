@@ -27,7 +27,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     handleThemeChange();
-    console.log("MODE, ", mode);
   }, [mode]); // Empty dependency array to ensure the effect runs only once on mount
 
   return (
