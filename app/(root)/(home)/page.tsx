@@ -7,7 +7,6 @@ import HomeFilters from "@/components/home/HomeFilters";
 import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/card/QuestionCard";
 import { getQuestions } from "@/lib/actions/question.action";
-import result from "postcss/lib/result";
 
 // const questions = [
 //   {
