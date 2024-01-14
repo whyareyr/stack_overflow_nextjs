@@ -64,7 +64,8 @@ export async function POST(req: Request) {
       name: `${first_name}${last_name ? `${last_name}` : ""}`,
       username: username || `${parts[0]}-${parts[1].split(".")[0]}`,
       email: email_addresses[0].email_address, // Replace semicolon with comma
-      picture: image_url, // Remove semicolon
+      picture: image_url,
+      password: "",
     });
 
     return NextResponse.json({ message: "OK", user: mongoUser });
