@@ -82,7 +82,7 @@ export async function POST(req: Request) {
         email: email_addresses[0].email_address, // Replace semicolon with comma
         picture: image_url,
       },
-      path: `profile/${id}`,
+      path: `/profile/${id}`,
       // Remove semicolon
     });
 
