@@ -26,7 +26,13 @@ export async function createUser(userData: CreateUserParams) {
   try {
     connectToDatabase();
     console.log(userData);
-    const newUser = await User.create(userData);
+
+    // Set default or empty values for fields if needed
+    const newUser = await User.create({
+      ...userData,
+      // For example, if `admin` is a boolean field, set a default value
+      admin: false,
+    });
 
     return newUser;
   } catch (error) {
@@ -40,6 +46,7 @@ export async function updateUser(params: UpdateUserParams) {
     connectToDatabase();
     const { clerkId, updateData, path } = params;
 
+    // Ensure that `updateData` contains the correct fields
     await User.findOneAndUpdate({ clerkId }, updateData, {
       new: true,
     });
@@ -61,17 +68,11 @@ export async function deleteUser(params: DeleteUserParams) {
     if (!user) {
       throw new Error("User not found");
     }
-    // delete user form database
-    // and questiosn and answerrs and comments etc
 
-    // const userQuestionIds = await Question.find({ author: user._id }).distinct(
-    //   "_id"
-    // );
-
+    // Delete user questions and answers
     await Question.deleteMany({ author: user._id });
 
-    // delete user answers and comments
-
+    // Delete the user
     const deletedUser = await User.findByIdAndDelete(user._id);
 
     return deletedUser;
